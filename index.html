@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Shape Calculator - Areas & Volumes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen gradient-bg font-sans antialiased selection:bg-purple-500 selection:text-white">
+    
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="floating-shape text-6xl" style="left: 10%; animation-delay: 0s;">🔵</div>
+        <div class="floating-shape text-4xl" style="left: 20%; animation-delay: 2s;">🔺</div>
+        <div class="floating-shape text-5xl" style="left: 30%; animation-delay: 4s;">🟦</div>
+        <div class="floating-shape text-3xl" style="left: 40%; animation-delay: 6s;">⬜</div>
+        <div class="floating-shape text-6xl" style="left: 50%; animation-delay: 8s;">🧊</div>
+        <div class="floating-shape text-4xl" style="left: 60%; animation-delay: 10s;">⚽</div>
+        <div class="floating-shape text-5xl" style="left: 70%; animation-delay: 12s;">🔶</div>
+        <div class="floating-shape text-3xl" style="left: 80%; animation-delay: 14s;">🪁</div>
+        <div class="floating-shape text-4xl" style="left: 90%; animation-delay: 1s;">🍦</div>
+        <div class="floating-shape text-5xl" style="left: 15%; animation-delay: 3s;">📦</div>
+        <div class="floating-shape text-3xl" style="left: 25%; animation-delay: 5s;">🔷</div>
+        <div class="floating-shape text-6xl" style="left: 35%; animation-delay: 7s;">⬡</div>
+    </div>
+
+    <!-- First Landing Page -->
+    <div id="landingPage" class="min-h-screen flex items-center justify-center p-6 relative z-10">
+        <div class="text-center max-w-4xl mx-auto px-4 glass-card p-8 sm:p-12 rounded-3xl backdrop-blur-md">
+            <div class="mb-8 sm:mb-10">
+                <div class="text-6xl sm:text-8xl mb-4 welcome-title inline-block">📐</div>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-4 tracking-tight drop-shadow-md">
+                    Shape Calculator
+                </h1>
+                <p class="text-lg sm:text-xl lg:text-2xl text-purple-100 mb-6 font-medium opacity-90">
+                    The Ultimate Mathematical Tool for Areas & Volumes
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left max-w-xl mx-auto text-purple-100 text-sm sm:text-base my-6 bg-white/10 p-4 rounded-2xl border border-white/10">
+                    <p class="flex items-center gap-2">✨ Calculate 15 Areas</p>
+                    <p class="flex items-center gap-2">📦 Find 12 Volumes</p>
+                    <p class="flex items-center gap-2">🎯 Step-by-Step Formulas</p>
+                    <p class="flex items-center gap-2">📱 Fully Responsive UI</p>
+                </div>
+            </div>
+            
+            <div class="space-y-6">
+                <button onclick="enterApp()" class="btn-glow bg-white text-purple-800 font-bold text-xl px-10 py-4 rounded-full hover:bg-purple-50 transition-all transform hover:scale-105 shadow-2xl">
+                    🚀 Enter Calculator
+                </button>
+                
+                <div class="text-white/70">
+                    <p class="text-xs sm:text-sm">Made with ❤️ for students, engineers & math enthusiasts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Welcome Page -->
+    <div id="welcomePage" class="min-h-screen flex items-center justify-center p-4 sm:p-6 relative z-10 hidden">
+        <div class="text-center max-w-6xl mx-auto w-full px-2 sm:px-4">
+            <div class="mb-6 sm:mb-8">
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-3 drop-shadow-lg">
+                    📐 Complete Shape Calculator
+                </h1>
+                <p class="text-sm sm:text-lg text-purple-100 opacity-90 font-medium">
+                    Select a shape to calculate its Area or Volume
+                </p>
+            </div>
+            
+            <!-- Tab Navigation -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-black/20 backdrop-blur-md p-1.5 rounded-full flex gap-1 border border-white/10 shadow-inner">
+                    <button onclick="showTab('areas')" id="areasTab" class="tab-active px-6 sm:px-10 py-3 rounded-full font-bold transition-all text-sm sm:text-base shadow-lg">
+                        📏 Areas (15)
+                    </button>
+                    <button onclick="showTab('volumes')" id="volumesTab" class="px-6 sm:px-10 py-3 rounded-full font-bold text-white/80 hover:text-white transition-all text-sm sm:text-base">
+                        📦 Volumes (12)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Areas Section -->
+            <div id="areasSection" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 mb-8">
+                <!-- Shape cards injected or rendered here -->
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('circle')">
+                    <div class="text-4xl mb-2">🔵</div>
+                    <h3 class="text-sm font-bold text-gray-800">Circle</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">πr²</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('square')">
+                    <div class="text-4xl mb-2">⬜</div>
+                    <h3 class="text-sm font-bold text-gray-800">Square</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">s²</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('rectangle')">
+                    <div class="text-4xl mb-2">🟦</div>
+                    <h3 class="text-sm font-bold text-gray-800">Rectangle</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">l × w</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('triangle')">
+                    <div class="text-4xl mb-2">🔺</div>
+                    <h3 class="text-sm font-bold text-gray-800">Triangle</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">½ × b × h</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('parallelogram')">
+                    <div class="text-4xl mb-2">▱</div>
+                    <h3 class="text-sm font-bold text-gray-800">Parallelogram</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">b × h</p>
+                </div>
+
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('trapezoid')">
+                    <div class="text-4xl mb-2">🔷</div>
+                    <h3 class="text-sm font-bold text-gray-800">Trapezoid</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">½(a+b)h</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('rhombus')">
+                    <div class="text-4xl mb-2">🔶</div>
+                    <h3 class="text-sm font-bold text-gray-800">Rhombus</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">½ × d₁ × d₂</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('pentagon')">
+                    <div class="text-4xl mb-2">⬟</div>
+                    <h3 class="text-sm font-bold text-gray-800">Pentagon</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">¼√25+10√5 s²</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('hexagon')">
+                    <div class="text-4xl mb-2">⬡</div>
+                    <h3 class="text-sm font-bold text-gray-800">Hexagon</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">3√3/2 s²</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('octagon')">
+                    <div class="text-4xl mb-2">⯃</div>
+                    <h3 class="text-sm font-bold text-gray-800">Octagon</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">2(1+√2)s²</p>
+                </div>
+
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('ellipse')">
+                    <div class="text-4xl mb-2">⭕</div>
+                    <h3 class="text-sm font-bold text-gray-800">Ellipse</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">π × a × b</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('sector')">
+                    <div class="text-4xl mb-2">🍰</div>
+                    <h3 class="text-sm font-bold text-gray-800">Sector</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">½r²θ</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('annulus')">
+                    <div class="text-4xl mb-2">🍩</div>
+                    <h3 class="text-sm font-bold text-gray-800">Annulus</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">π(R²-r²)</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('kite')">
+                    <div class="text-4xl mb-2">🪁</div>
+                    <h3 class="text-sm font-bold text-gray-800">Kite</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">½ × d₁ × d₂</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('equilateral')">
+                    <div class="text-4xl mb-2">🔼</div>
+                    <h3 class="text-sm font-bold text-gray-800">Equilateral △</h3>
+                    <p class="text-xs text-purple-600 font-semibold mt-1">√3/4 × s²</p>
+                </div>
+            </div>
+
+            <!-- Volumes Section -->
+            <div id="volumesSection" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 mb-8 hidden">
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('cube')">
+                    <div class="text-4xl mb-2">🧊</div>
+                    <h3 class="text-sm font-bold text-gray-800">Cube</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">s³</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('cuboid')">
+                    <div class="text-4xl mb-2">📦</div>
+                    <h3 class="text-sm font-bold text-gray-800">Cuboid</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">l × w × h</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('sphere')">
+                    <div class="text-4xl mb-2">⚽</div>
+                    <h3 class="text-sm font-bold text-gray-800">Sphere</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">4/3πr³</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('cylinder')">
+                    <div class="text-4xl mb-2">🥫</div>
+                    <h3 class="text-sm font-bold text-gray-800">Cylinder</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">πr²h</p>
+                </div>
+
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('cone')">
+                    <div class="text-4xl mb-2">🍦</div>
+                    <h3 class="text-sm font-bold text-gray-800">Cone</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">1/3πr²h</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('pyramid')">
+                    <div class="text-4xl mb-2">🔺</div>
+                    <h3 class="text-sm font-bold text-gray-800">Pyramid</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">1/3 × base × h</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('prism')">
+                    <div class="text-4xl mb-2">📐</div>
+                    <h3 class="text-sm font-bold text-gray-800">Prism</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">base × h</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('hemisphere')">
+                    <div class="text-4xl mb-2">🌗</div>
+                    <h3 class="text-sm font-bold text-gray-800">Hemisphere</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">2/3πr³</p>
+                </div>
+
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('torus')">
+                    <div class="text-4xl mb-2">🍩</div>
+                    <h3 class="text-sm font-bold text-gray-800">Torus</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">2π²Rr²</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('ellipsoid')">
+                    <div class="text-4xl mb-2">🥚</div>
+                    <h3 class="text-sm font-bold text-gray-800">Ellipsoid</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">4/3πabc</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('tetrahedron')">
+                    <div class="text-4xl mb-2">🔻</div>
+                    <h3 class="text-sm font-bold text-gray-800">Tetrahedron</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">s³/6√2</p>
+                </div>
+                <div class="shape-card bg-white/90 backdrop-blur-sm rounded-2xl p-4 cursor-pointer text-center" onclick="showCalculator('frustum')">
+                    <div class="text-4xl mb-2">🪣</div>
+                    <h3 class="text-sm font-bold text-gray-800">Frustum</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">1/3πh(r₁²+r₁r₂+r₂²)</p>
+                </div>
+            </div>
+
+            <!-- Exit Button -->
+            <div class="mb-6">
+                <button onclick="exitApp()" class="bg-red-500/80 hover:bg-red-600 text-white font-bold px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg backdrop-blur-sm border border-red-400/30">
+                    🚪 Exit Calculator
+                </button>
+            </div>
+
+            <div class="text-white/80">
+                <p class="text-base sm:text-lg font-medium">👆 Click on any shape above to start calculating!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Universal Calculator Page -->
+    <div id="calculatorPage" class="min-h-screen flex items-center justify-center p-4 sm:p-6 relative z-10 hidden">
+        <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full border border-white/20 relative">
+            <div class="text-center mb-6">
+                <div id="shapeIcon" class="text-5xl sm:text-6xl mb-3 inline-block">🔵</div>
+                <h2 id="shapeTitle" class="text-2xl sm:text-3xl font-extrabold text-gray-800">Shape Calculator</h2>
+                <p id="shapeDescription" class="text-sm text-gray-500 font-medium mt-1">Enter values to calculate</p>
+            </div>
+            
+            <form id="calculatorForm" class="space-y-4">
+                <div id="inputFields" class="space-y-4"></div>
+                
+                <button type="submit" id="calculateBtn" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Calculate
+                </button>
+            </form>
+            
+            <div id="result" class="mt-6 hidden result-animation"></div>
+            
+            <button onclick="goHome()" class="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+                ← Back to Shapes
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
